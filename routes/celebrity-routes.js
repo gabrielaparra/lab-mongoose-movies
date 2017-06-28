@@ -78,4 +78,55 @@ router.get('/celebrities/:myId', (req, res, next) => {
   );
 });
 
+// STEP #1 of form submission for UPDATING a Celebrity
+router.get('/celebrities/:myId/edit', (req, res, next) => {
+  CelebrityModel.findById(
+    req.params.myId,             //1st arg -> the ID to find in the DB
+    (err, celebrityFromDb) => {   //2nd arg -> callback
+      if (err) {
+        //use next() to skup to the ERROR page
+        next(err);
+        return;
+      }
+      res.locals.celebrityDetails = celebrityFromDb;
+
+      res.render('celebrity-views/edit-celebrity-view.ejs');
+    }
+  );
+});
+
+// STEP #2 of form submission for UPDATING a Celebrity
+router.post('/celebrities/:myId/update', (req, res, next) => {
+  CelebrityModel.findByIdAndUpdate(
+    req.params.myId,              //1st arg -> id of document to update
+    {                            //2nd arg -> object fields to update
+      occupation: req.body.celebrityOccupation,
+      catchPhrase: req.body.celebrityCatchPhrase
+    },
+    (err, celebrityFromDb) => {    //3rd arg -> callback
+      if (err) {
+        //use next() to skup to the ERROR page
+        next(err);
+        return;
+      }
+      res.redirect('/celebrities/' + celebrityFromDb._id);
+      //every time there's a successful post we must redirect
+    }
+  );
+});
+
+//Delete a Celebrity
+router.get('/celebrities/:myId/delete', (req, res, next) => {
+  CelebrityModel.findByIdAndRemove(
+    req.params.myId,
+    (err, celebrityFromDb) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.redirect('/celebrities');
+    }
+  );
+});
+
 module.exports = router;

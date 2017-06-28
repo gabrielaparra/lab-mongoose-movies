@@ -1,0 +1,16 @@
+<h2> Update Information for <%= celebrityDetails.name %> </h2>
+
+ <form action="/celebrities/<%= celebrityDetails._id %>/update"
+       method="post">
+   <label for="celebrity-occupation"> Occupation: </label>
+   <input id="celebrity-occupation" type="text"
+          name="celebrityOccupation" value="<%= celebrityDetails.occupation %>">
+   <br>
+
+   <label for="celebrity-catch-phrase"> Catch Phrase: </label>
+   <input id="celebrity-catch-phrase" type="text"
+          name="celebrityCatchPhrase" value="<%= celebrityDetails.catchPhrase %>">
+   <br>
+
+   <button> Submit </button>
+ </form>
