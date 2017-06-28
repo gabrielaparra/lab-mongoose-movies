@@ -1,0 +1,21 @@
+<h2> Add a new Celebrity! </h2>
+
+<form action="/celebrities" method="post">
+  <% if (typeof nameValidationError === 'object') { %>
+    <p class="error"> <%= nameValidationError.message %> </p>
+  <% } %>
+  
+  <label for="celebrity-name"> Name: </label>
+  <input id="celebrity-name" type="text" name="celebrityName">
+  <br>
+
+  <label for="celebrity-occupation"> Occupation: </label>
+  <input id="celebrity-occupation" type="text" name="celebrityOccupation">
+  <br>
+
+  <label for="celebrity-catch-phrase"> Catch Phrase: </label>
+  <input id="celebrity-catch-phrase" type="text" name="celebrityCatchPhrase">
+  <br>
+
+  <button> Submit Now </button>
+</form>
