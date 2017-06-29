@@ -46,7 +46,7 @@ router.post('/celebrities', (req, res, next) => {
     //if there's a validation error
     if (err && theCelebrity.errors) {
       // create view variables with the error messages
-      // res.locals.validationErrors = theProduct.errors;
+      // res.locals.validationErrors = theCelebrity.errors;
       res.render('celebrity-views/new-celebrity-view.ejs', {
                     // display the form again ^^^
         nameValidationError: theCelebrity.errors.name,

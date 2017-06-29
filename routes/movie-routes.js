@@ -22,6 +22,43 @@ router.get('/movies', (req, res, next) => {
   });
 });
 
+//STEP #1 of form submission for a new movie
+router.get('/movies/new', (req, res, next) => {
+  res.render('movie-views/new-movie-view.ejs');
+});
+
+//STEP #2 of form submission for a new movie
+// <form method="post" action="/movies">
+router.post('/celebrities', (req, res, next) => {
+  const theMovie = new MovieModel ({
+    title: req.body.movieTitle,
+    genre: req.body.movieGenre,
+    plot: req.body.moviePlot
+  });
+
+  theMovie.save((err) => {
+    //if there's an error that's NOT a validation error
+    if (err && theMovie.errors === undefined) {
+      next(err);
+      return;
+    }
+
+    //if there's a validation error
+    if (err && theMovie.errors) {
+      // create view variables with the error messages
+      // res.locals.validationErrors = theMovie.errors;
+      res.render('movie-views/new-movie-view.ejs', {
+                    // display the form again ^^^
+        nameValidationError: theMovie.errors.name,
+      });
+      return;
+    }
+    //if save is successful, redirect to a URL
+    res.redirect('/celebrities');
+    //if we don't redirect we can refresh and duplicate the data
+  });
+});
+
 // Displaying details about each movie
 router.get('/movies/:myId', (req, res, next) => {
   MovieModel.findById(
