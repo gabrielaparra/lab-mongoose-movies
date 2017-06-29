@@ -4,36 +4,36 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/movieshop');
 
-const Celebrity = require('../models/celebrity-model.js');
+const Movie = require('../models/movie-model.js');
 
-const celebrityArray = [
+const movieArray = [
   {
-    name: 'Speedy Gonzalez',
-    occupation: 'Singer',
-    catchPhrase: 'I wish burritos were actually Mexican'
+    title: 'Playing with a Fuzzy Rabbit',
+    genre: 'Comedy',
+    plot: 'There\'s a new rabbit on the block, he is fuzzy and ready to play.'
   },
   {
-    name: 'James Seiler',
-    occupation: 'Comedian',
-    catchPhrase: 'Money rains on me'
+    title: 'Executing Mrs. Wong',
+    genre: 'Action',
+    plot: 'Mrs. Wong is on the run and she is willing to do whatever it takes to survive.'
   },
   {
-    name: 'Emily Hicklin',
-    occupation: 'Model',
-    catchPhrase: 'A celery a day will get you where I am'
-  },
+    title: 'Running Against Samus Samuellson',
+    genre: 'Drama',
+    plot: 'An inspiring story about a boy running against the odds.'
+  }
 ];
 
-Celebrity.create(
-  celebrityArray,           //1st arg --> array of product info objects
-  (err, celebrityResults) => {  //2nd arg --> callback
+Movie.create(
+  movieArray,           //1st arg --> array of product info objects
+  (err, movieResults) => {  //2nd arg --> callback
     if (err) {
       console.log('OMG! Database error.');
       return;
     }
 
-    celebrityResults.forEach((celebrity) => {
-      console.log('New Celebrity! ' + celebrity.name);
+    movieResults.forEach((movie) => {
+      console.log('New Movie! ' + movie.name);
     });
   }
 );

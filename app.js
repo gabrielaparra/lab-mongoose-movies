@@ -36,6 +36,9 @@ app.use('/', index);
 const celebrityRoutes = require('./routes/celebrity-routes.js');
 app.use('/', celebrityRoutes);
 
+const movieRoutes = require('./routes/movie-routes.js');
+app.use('/', movieRoutes);
+
 //-----------------------------------------------
 
 // catch 404 and forward to error handler

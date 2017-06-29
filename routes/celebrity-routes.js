@@ -2,6 +2,7 @@ const express = require('express');
 const CelebrityModel = require('../models/celebrity-model.js');
 const router = express.Router();
 
+// To list all the celebrities
 router.get('/celebrities', (req, res, next) => {
   CelebrityModel.find(
     (err, celebrityResults) => {
