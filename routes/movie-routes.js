@@ -29,7 +29,7 @@ router.get('/movies/new', (req, res, next) => {
 
 //STEP #2 of form submission for a new movie
 // <form method="post" action="/movies">
-router.post('/celebrities', (req, res, next) => {
+router.post('/movies', (req, res, next) => {
   const theMovie = new MovieModel ({
     title: req.body.movieTitle,
     genre: req.body.movieGenre,
@@ -37,11 +37,11 @@ router.post('/celebrities', (req, res, next) => {
   });
 
   theMovie.save((err) => {
-    //if there's an error that's NOT a validation error
-    if (err && theMovie.errors === undefined) {
-      next(err);
-      return;
-    }
+    // //if there's an error that's NOT a validation error
+    // if (err && theMovie.errors === undefined) {
+    //   next(err);
+    //   return;
+    // }
 
     //if there's a validation error
     if (err && theMovie.errors) {
@@ -54,7 +54,7 @@ router.post('/celebrities', (req, res, next) => {
       return;
     }
     //if save is successful, redirect to a URL
-    res.redirect('/celebrities');
+    res.redirect('/movies');
     //if we don't redirect we can refresh and duplicate the data
   });
 });
